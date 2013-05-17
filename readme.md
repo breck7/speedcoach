@@ -10,8 +10,13 @@ Installation:
 Command line usage:
 
     speedcoach express
+    # 0.1S start to required +6.0MB
     speedcoach space
+    # 0.0S start to required +0.1MB
     speedcoach fs 
+    # 0.0S start to required +0.0MB
+    speedcoach jquery
+    # 0.6S start to required +36.4MB
 
 Using in a script:
 
