@@ -1,6 +1,6 @@
 {
   "name": "speedcoach",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Benchmark node.js modules to make them faster and lighter.",
   "repository": "https://github.com/nudgepad/speedcoach",
   "main": "speedcoach.js",
@@ -18,5 +18,6 @@
     "speed"
   ],
   "license": "MIT",
-  "author": "Breck Yunits"
+  "author": "Breck Yunits",
+  "preferGlobal" : true
 }

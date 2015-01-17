@@ -1,4 +1,4 @@
 install:
-	cd ..; sudo npm install -g speedcoach/; npm install speedcoach/
+	cd ..; sudo npm install -g speedcoach/
 
 .PHONY: install

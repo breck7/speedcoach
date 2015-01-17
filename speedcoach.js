@@ -1,6 +1,6 @@
 var _ = require('underscore')
 /**
- * @param {string}
+ * @param string
  */
 function speedcoach(mark) {
   var mem = process.memoryUsage()
@@ -10,7 +10,7 @@ function speedcoach(mark) {
 speedcoach.marks = []
 
 /**
- * @return {string}
+ * @return string
  */
 speedcoach.times = function () {
   var times = ''

@@ -5,7 +5,7 @@ Benchmark node.js modules to make them faster and lighter
 
 Installation:
 
-    npm install speedcoach
+    npm install speedcoach -g
 
 Command line usage:
 
