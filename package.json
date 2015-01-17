@@ -1,6 +1,6 @@
 {
   "name": "speedcoach",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Benchmark node.js modules to make them faster and lighter.",
   "repository": "https://github.com/nudgepad/speedcoach",
   "main": "speedcoach.js",

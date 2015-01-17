@@ -37,6 +37,7 @@ var packageName = process.argv[2],
 
 for (var i = 0; i < folders; i++) {
   paths.push(cwd + "../".repeat(i) + packageName)
+  paths.push(cwd + "../".repeat(i) + "node_modules/" + packageName)
 }
 
 speedcoach('start')
