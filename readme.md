@@ -47,3 +47,5 @@ Example output:
 
     0.1S array initialized to string created +10.9MB 
     0.0S start to array initialized +0.9MB
+
+Works in node.js or in the browser (tested with Chrome).

@@ -1,12 +1,29 @@
-var _ = require('underscore')
 /**
  * @param string
  */
 function speedcoach(mark) {
-  var mem = process.memoryUsage()
-  speedcoach.marks.push([mark, new Date().getTime(), [mem.rss, mem.heapTotal, mem.heapUsed]])
+  if (!speedcoach.on)
+    return this
+  if (speedcoach.isNode) {
+    var mem = process.memoryUsage()
+    speedcoach.marks.push([mark, new Date().getTime(), [mem.rss, mem.heapTotal, mem.heapUsed]])
+  }
+  else
+    speedcoach.marks.push([mark, new Date().getTime()])
+
   return this
 }
+
+speedcoach.isNode = false
+speedcoach.on = true
+
+if (typeof _ === 'undefined' && require) {
+  (function () {
+    _ = require('underscore')  
+    speedcoach.isNode = true
+  })()
+}
+
 speedcoach.marks = []
 
 /**
@@ -19,19 +36,31 @@ speedcoach.times = function () {
     if (index + 1 >= list.length)
       return false
     var next = list[index + 1]
-    spans.push([
-      element[0] + ' to ' + next[0],
-      // elapsed time
-      next[1] - element[1],
-      // increased mem usage
-      next[2][0] - element[2][0]
-    ])
+    // Marks and time
+    var entry = [element[0] + ' to ' + next[0], next[1] - element[1]]
+    // Mem
+    if (speedcoach.isNode)
+      entry.push(next[2][0] - element[2][0])
+    spans.push(entry)
   })
   var sorted = _.sortBy(spans, function(span){ return span[1] }).reverse()
   _.each(sorted, function (element) {
-    times += (element[1]/1000).toFixed(1) + 'S ' + element[0] + ' +' + (element[2]/1000000).toFixed(1) + 'MB \n'
+    var mem = ''
+    if (speedcoach.isNode)
+      mem = ' +' + (element[2]/1000000).toFixed(1) + 'MB '
+    times += (element[1]/1000).toFixed(1) + 'S ' + element[0] + mem + '\n'
   })
   return times
 }
 
-module.exports = speedcoach
+speedcoach.print = function (dontClear) {
+  if (!speedcoach.on)
+    return;
+  console.debug('\n' + speedcoach.times())
+  if (!dontClear)
+    speedcoach.marks = []
+}
+
+// Export Space for use in Node.js
+if (typeof exports !== 'undefined')
+  module.exports = speedcoach;
