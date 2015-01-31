@@ -56,7 +56,12 @@ speedcoach.times = function () {
 speedcoach.print = function (dontClear) {
   if (!speedcoach.on)
     return;
-  console.debug('\n' + speedcoach.times())
+
+  if (console.debug)
+    console.debug('\n' + speedcoach.times())
+  else
+    console.log('\n' + speedcoach.times())
+
   if (!dontClear)
     speedcoach.marks = []
 }
