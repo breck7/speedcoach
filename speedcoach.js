@@ -42,7 +42,9 @@ speedcoach.times = function () {
     spans.push(entry)
   })
 
-  var sorted = _.sortBy(spans, function(span){ return span[1] }).reverse()
+  var sorted = spans.sort(function(a,b){
+    return (a > b ? 1 : null) || (a < b ? -1 : 0)
+  }).reverse()
 
   sorted.forEach(function (element) {
     var mem = ''

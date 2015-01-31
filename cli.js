@@ -44,6 +44,7 @@ speedcoach('start')
 
 paths.forEach(function (p) {
   try {
+    console.log(p)
     pkg = require(p)
     speedcoach('finished requiring ' + packageName)
     console.log(speedcoach.times())
