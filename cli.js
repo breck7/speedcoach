@@ -53,5 +53,3 @@ paths.forEach(function (p) {
 })
 
 throw new Error(packageName + " not found")
-
-
