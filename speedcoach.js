@@ -49,24 +49,33 @@ speedcoach.times = function () {
   sorted.forEach(function (element) {
     var mem = ''
     if (speedcoach.isNode)
-      mem = ' +' + (element[2]/1000000).toFixed(1) + 'MB '
-    times += (element[1]/1000).toFixed(1) + 'S ' + element[0] + mem + '\n'
+      mem = ' +' + (element[2]/1000000).toFixed(2) + 'MB '
+    times += (element[1]/1000).toFixed(2) + 'S ' + element[0] + mem + '\n'
   })
 
   return times
 }
 
+/**
+ * @param dontClear Set to true to not clear the marks
+ * @return string
+ */
 speedcoach.print = function (dontClear) {
+  var data = '\n' + speedcoach.times(),
+      clear = !dontClear
+
   if (!speedcoach.on)
     return;
 
   if (console.debug)
-    console.debug('\n' + speedcoach.times())
+    console.debug(data)
   else
-    console.log('\n' + speedcoach.times())
+    console.log(data)
 
-  if (!dontClear)
+  if (clear)
     speedcoach.marks = []
+
+  return data
 }
 
 // Export Space for use in Node.js
