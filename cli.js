@@ -1,16 +1,16 @@
 #!/usr/bin/env node
-var speedcoach = require('./speedcoach.js')
+var speedcoach = require("./speedcoach.js")
 
-console.log('speedcoach version 0.2.0')
+console.log("speedcoach version 0.3.4")
 
 if (process.argv.length < 3) {
-  console.log('Usage: speedcoach packageName')
+  console.log("Usage: speedcoach packageName")
   process.exit()
 }
 
 if (!String.repeat) {
   String.prototype.repeat = function (count) {
-    var str = ''
+    var str = ""
 
     for (var i = 0; i < count; i++) {
       str += this.toString()
@@ -22,7 +22,7 @@ if (!String.repeat) {
 
 var packageName = process.argv[2],
     pkg,
-    cwd = process.cwd().replace(/\/$/, '') + "/",
+    cwd = process.cwd().replace(/\/$/, "") + "/",
     folders = cwd.match(/\//g).length - 1,
     paths = [packageName];
 
@@ -40,17 +40,18 @@ for (var i = 0; i < folders; i++) {
   paths.push(cwd + "../".repeat(i) + "node_modules/" + packageName)
 }
 
-speedcoach('start')
+speedcoach("start")
 
 paths.forEach(function (p) {
   try {
     console.log(p)
     pkg = require(p)
-    speedcoach('finished requiring ' + packageName)
+    speedcoach("finished requiring " + packageName)
     console.log(speedcoach.times())
     process.exit()
   } catch (e) {
   }
 })
 
+// We should have hit process.exit() by now.
 throw new Error(packageName + " not found")
