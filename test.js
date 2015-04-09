@@ -1,6 +1,6 @@
-var speedcoach = require("./speedcoach"),
-	numbers = [],
-	string = ""
+var speedcoach = require("./speedcoach.js")
+var numbers = []
+var string = ""
 
 speedcoach("start")
 
@@ -14,4 +14,5 @@ for (i = 0 ; i < 99999; i++) {
 }
 speedcoach("string created")
 
+console.log(speedcoach.getCsv())
 console.log(speedcoach.times())
