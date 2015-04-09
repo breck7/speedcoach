@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 var speedcoach = require("./speedcoach.js")
 
-console.log("speedcoach version 0.3.5")
+console.log("speedcoach version 0.3.6")
 
 if (process.argv.length < 3) {
   console.log("Usage: speedcoach packageName")

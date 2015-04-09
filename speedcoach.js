@@ -135,7 +135,7 @@ speedcoach.print = function (dontClear, chronological) {
  */
 speedcoach.getCsv = function () {
   var testResults = speedcoach._getTestResults()
-  var csv = ""
+  var csv = "seconds,megabytes,name\n"
 
   testResults.forEach(function (result) {
     csv += (result.elapsedTime/1000).toFixed(2) + ","
